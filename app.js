@@ -1,212 +1,479 @@
-const state = {
-  lang: "pt",
-  projects: [],
-  filtered: [],
+/* =========================
+   CONFIG — COLE SEUS LINKS AQUI
+========================= */
+const PROFILE_LINKS = {
+  linkedin: "www.linkedin.com/in/thabata-santos",
+  github: "https://github.com/thabata-santos",
+  email: "thabata@thabatasantos.com"
 };
 
-const i18n = {
+const DEFAULT_LANG = "pt"; // "pt" | "en"
+
+/* =========================
+   I18N STRINGS (PT/EN)
+========================= */
+const I18N = {
   pt: {
-    "nav.about": "Sobre",
-    "nav.projects": "Projetos",
-    "nav.certs": "Certificações",
-    "nav.contact": "Contato",
-    "hero.subtitle": "Construindo sistemas resilientes e escaláveis.",
-    "hero.lead": "Estudante de Engenharia da Computação, focada em AWS, redes e infraestrutura. Portfólio com labs, automações e projetos.",
-    "hero.ctaProjects": "Ver projetos",
-    "chips.networks": "Redes",
-    "hero.panelTitle": "Status • Portfólio",
-    "hero.panelRole": "Foco",
-    "hero.panelNow": "Agora",
-    "hero.panelMode": "Modo",
-    "hero.panelHint": "Dica: clique nos cards para expandir.",
-    "about.title": "Sobre",
-    "about.sub": "Um resumo rápido, direto e profissional.",
-    "about.card1.title": "Quem sou",
-    "about.card1.body": "Sou estudante de Engenharia da Computação e estou em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
-    "about.card2.title": "Stack & interesses",
-    "projects.title": "Projetos",
-    "projects.sub": "Cards dinâmicos carregados de JSON.",
-    "projects.filterAll": "Todos",
-    "projects.filterNetwork": "Redes",
-    "projects.filterAutomation": "Automação",
-    "certs.title": "Certificações & estudos",
-    "certs.sub": "Você pode atualizar isso em minutos.",
-    "certs.card1.title": "Em andamento",
-    "certs.card2.title": "Próximas",
-    "contact.title": "Contato",
-    "contact.sub": "Links e formas fáceis de falar com você.",
-    "contact.card1.title": "Email",
-    "contact.card1.hint": "Respondo mais rápido por email.",
-    "contact.card2.title": "Social",
-    "contact.card2.hint": "Depois você cola seus links aqui:"
+    nav_about: "Sobre",
+    nav_projects: "Projetos",
+    nav_certs: "Certificações",
+    nav_contact: "Contato",
+    hero_lead: "Construindo sistemas resilientes e escaláveis.",
+    hero_body:
+      "Estudante de Engenharia da Computação, focada em AWS, redes e infraestrutura. Portfólio com labs, automações e projetos replicáveis.",
+    hero_cta_projects: "Ver projetos",
+    chip_networks: "Redes",
+    panel_title: "Highlights",
+    panel_focus_k: "Foco",
+    panel_now_k: "Agora",
+    panel_mode_k: "Modo",
+    panel_online: "Online",
+    panel_hint: "Dica: clique nos cards para expandir.",
+    sec_about: "Sobre",
+    about_who_title: "Quem sou",
+    about_who_body:
+      "Sou estudante de Engenharia da Computação em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
+    about_stack_title: "Stack & interesses",
+    about_stack_1: "AWS (EC2, VPC, S3, RDS, Lambda, Route 53)",
+    about_stack_2: "Linux, redes, troubleshooting",
+    about_stack_3: "Infra como código (IaC) e automação",
+    skills_hard_title: "Hard skills",
+    skills_soft_title: "Soft skills",
+    sec_projects: "Projetos",
+    filter_all: "Todos",
+    sec_certs: "Certificações & estudos",
+    certs_in_progress: "Em andamento",
+    certs_next: "Próximas",
+    sec_contact: "Contato",
+    contact_subtitle: "Vamos nos conectar?",
+    contact_email_title: "E-mail",
+    contact_social_title: "Social",
+    contact_hint: "(Você vai colar seus links no app.js)",
+    footer_build: "build:"
   },
+
   en: {
-    "nav.about": "About",
-    "nav.projects": "Projects",
-    "nav.certs": "Certifications",
-    "nav.contact": "Contact",
-    "hero.subtitle": "Building resilient, scalable systems.",
-    "hero.lead": "Computer Engineering student focused on AWS, networking, and infrastructure. Portfolio with labs, automations, and projects.",
-    "hero.ctaProjects": "View projects",
-    "chips.networks": "Networking",
-    "hero.panelTitle": "Status • Portfolio",
-    "hero.panelRole": "Focus",
-    "hero.panelNow": "Now",
-    "hero.panelMode": "Mode",
-    "hero.panelHint": "Tip: click cards to expand.",
-    "about.title": "About",
-    "about.sub": "A quick, direct, professional summary.",
-    "about.card1.title": "Who I am",
-    "about.card1.body": "I’m a Computer Engineering student transitioning into Cloud/Infra. I learn by doing hands-on labs and replicable projects.",
-    "about.card2.title": "Stack & interests",
-    "projects.title": "Projects",
-    "projects.sub": "Dynamic cards loaded from JSON.",
-    "projects.filterAll": "All",
-    "projects.filterNetwork": "Networking",
-    "projects.filterAutomation": "Automation",
-    "certs.title": "Certifications & studies",
-    "certs.sub": "Update this in minutes.",
-    "certs.card1.title": "In progress",
-    "certs.card2.title": "Next",
-    "contact.title": "Contact",
-    "contact.sub": "Easy ways to reach you.",
-    "contact.card1.title": "Email",
-    "contact.card1.hint": "Email is the fastest way.",
-    "contact.card2.title": "Social",
-    "contact.card2.hint": "Paste your links here later:"
+    nav_about: "About",
+    nav_projects: "Projects",
+    nav_certs: "Certifications",
+    nav_contact: "Contact",
+    hero_lead: "Building resilient and scalable systems.",
+    hero_body:
+      "Computer Engineering student focused on AWS, networking and infrastructure. Portfolio with labs, automation and replicable projects.",
+    hero_cta_projects: "View projects",
+    chip_networks: "Networking",
+    panel_title: "Highlights",
+    panel_focus_k: "Focus",
+    panel_now_k: "Now",
+    panel_mode_k: "Mode",
+    panel_online: "Online",
+    panel_hint: "Tip: click cards to expand.",
+    sec_about: "About",
+    about_who_title: "Who I am",
+    about_who_body:
+      "Computer Engineering student transitioning into Cloud/Infra. I learn by doing labs and replicable projects.",
+    about_stack_title: "Stack & interests",
+    about_stack_1: "AWS (EC2, VPC, S3, RDS, Lambda, Route 53)",
+    about_stack_2: "Linux, networking, troubleshooting",
+    about_stack_3: "Infrastructure as Code (IaC) and automation",
+    skills_hard_title: "Hard skills",
+    skills_soft_title: "Soft skills",
+    sec_projects: "Projects",
+    filter_all: "All",
+    sec_certs: "Certifications & learning",
+    certs_in_progress: "In progress",
+    certs_next: "Next",
+    sec_contact: "Contact",
+    contact_subtitle: "Let’s connect?",
+    contact_email_title: "Email",
+    contact_social_title: "Social",
+    contact_hint: "(Paste your links in app.js)",
+    footer_build: "build:"
   }
 };
 
-function applyI18n(){
-  document.documentElement.lang = state.lang === "pt" ? "pt-BR" : "en";
-  document.querySelectorAll("[data-i18n]").forEach(el => {
+/* =========================
+   HELPERS
+========================= */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+function formatNow(lang) {
+  const d = new Date();
+  const opt = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  };
+  const locale = lang === "en" ? "en-US" : "pt-BR";
+  return new Intl.DateTimeFormat(locale, opt).format(d);
+}
+
+/* =========================
+   I18N APPLY
+========================= */
+let LANG = localStorage.getItem("lang") || DEFAULT_LANG;
+
+function applyI18n() {
+  const dict = I18N[LANG] || I18N.pt;
+
+  $$("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
-    el.textContent = i18n[state.lang][key] ?? el.textContent;
+    if (dict[key]) el.textContent = dict[key];
   });
-  const search = document.getElementById("search");
-  if (search) search.placeholder = state.lang === "pt" ? "Buscar projeto..." : "Search project...";
+
+  // update search placeholder
+  const search = $("#searchInput");
+  if (search) {
+    search.placeholder = LANG === "en" ? "Search project..." : "Buscar projeto...";
+  }
+
+  document.documentElement.lang = LANG === "en" ? "en" : "pt-BR";
+  $("#nowText").textContent = formatNow(LANG);
+
+  // update email
+  const email = PROFILE_LINKS.email;
+  $("#emailText").textContent = email;
+  $("#emailLink").textContent = email;
+  $("#emailLink").href = `mailto:${email}`;
+  $("#emailBtn").href = `mailto:${email}`;
+
+  // update social links
+  $("#linkedinBtn").href = PROFILE_LINKS.linkedin || "#";
+  $("#githubBtn").href = PROFILE_LINKS.github || "#";
 }
 
-function setNow(){
-  const el = document.getElementById("nowText");
-  const dt = new Date();
-  const text = state.lang === "pt"
-    ? `Atualizando portfólio • ${dt.toLocaleString("pt-BR")}`
-    : `Updating portfolio • ${dt.toLocaleString("en-US")}`;
-  if (el) el.textContent = text;
+/* =========================
+   REVEAL ON SCROLL
+========================= */
+function setupReveal() {
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("show");
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  $$(".reveal").forEach((el) => io.observe(el));
 }
 
-async function loadProjects(){
-  const res = await fetch("data/projects.json", { cache: "no-store" });
-  const data = await res.json();
-  state.projects = data;
-  state.filtered = data;
-  renderProjects();
+/* =========================
+   EMAIL COPY
+========================= */
+function setupEmailCopy() {
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(PROFILE_LINKS.email);
+    } catch {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = PROFILE_LINKS.email;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+  };
+
+  $("#copyEmailBtn")?.addEventListener("click", copy);
+  $("#copyEmailBtn2")?.addEventListener("click", copy);
 }
 
-function matchesFilter(p){
-  const q = (document.getElementById("search")?.value ?? "").toLowerCase().trim();
-  const f = document.getElementById("filter")?.value ?? "all";
-  const text = `${p.title} ${p.subtitle} ${(p.tags||[]).join(" ")}`.toLowerCase();
-  const okQ = !q || text.includes(q);
-  const okF = (f === "all") || (p.category === f);
-  return okQ && okF;
+/* =========================
+   PROJECTS (JSON) + FILTERS + MODAL
+========================= */
+let DATA = null;
+
+function projectCardHTML(p) {
+  const title = p.title?.[LANG] || p.title?.pt || "";
+  const summary = p.summary?.[LANG] || p.summary?.pt || "";
+  const tags = (p.tags || []).slice(0, 6);
+
+  return `
+    <article class="card projectCard reveal" data-id="${p.id}">
+      <h3 class="cardTitle">${title}</h3>
+      <p class="cardText">${summary}</p>
+
+      <div class="projectMeta">
+        ${tags.map((t) => `<span class="pillTag">${t}</span>`).join("")}
+      </div>
+    </article>
+  `;
 }
 
-function renderProjects(){
-  const grid = document.getElementById("projectsGrid");
-  if (!grid) return;
+function renderProjects() {
+  const grid = $("#projectsGrid");
+  if (!grid || !DATA) return;
 
-  const list = state.projects.filter(matchesFilter);
-  grid.innerHTML = "";
+  const q = ($("#searchInput").value || "").toLowerCase().trim();
+  const tag = $("#tagSelect").value;
 
-  list.forEach(p => {
-    const card = document.createElement("div");
-    card.className = "card project";
-    card.tabIndex = 0;
+  const list = (DATA.projects || []).filter((p) => {
+    const title = (p.title?.[LANG] || p.title?.pt || "").toLowerCase();
+    const summary = (p.summary?.[LANG] || p.summary?.pt || "").toLowerCase();
+    const matchText = !q || title.includes(q) || summary.includes(q);
 
-    const badges = (p.tags||[]).slice(0,6).map(t => `<span class="badge">${escapeHtml(t)}</span>`).join("");
+    const tags = p.tags || [];
+    const matchTag = tag === "all" ? true : tags.includes(tag);
 
-    card.innerHTML = `
-      <div class="card-title">${escapeHtml(p.subtitle)}</div>
-      <h3 style="margin:10px 0 6px; font-family: Orbitron, sans-serif;">${escapeHtml(p.title)}</h3>
-      <div class="badges">${badges}</div>
-      <p style="margin:12px 0 0; color: var(--muted);">
-        ${escapeHtml(state.lang === "pt" ? p.description_pt : p.description_en)}
-      </p>
-    `;
+    return matchText && matchTag;
+  });
 
-    card.addEventListener("click", () => openModal(p));
-    card.addEventListener("keydown", (e) => { if (e.key === "Enter") openModal(p); });
+  grid.innerHTML = list.map(projectCardHTML).join("");
 
-    grid.appendChild(card);
+  // re-attach reveal for new cards
+  $$(".projectCard.reveal").forEach((el) => el.classList.remove("show"));
+  setupReveal();
+
+  // click open modal
+  $$(".projectCard").forEach((el) => {
+    el.addEventListener("click", () => openModal(el.getAttribute("data-id")));
   });
 }
 
-function openModal(p){
-  const modal = document.getElementById("modal");
-  const title = document.getElementById("modalTitle");
-  const sub = document.getElementById("modalSub");
-  const body = document.getElementById("modalBody");
-  const actions = document.getElementById("modalActions");
+function openModal(id) {
+  const p = (DATA.projects || []).find((x) => x.id === id);
+  if (!p) return;
 
-  title.textContent = p.title;
-  sub.textContent = p.subtitle;
+  const title = p.title?.[LANG] || p.title?.pt || "";
+  const summary = p.summary?.[LANG] || p.summary?.pt || "";
+  const details = p.details?.[LANG] || p.details?.pt || [];
+  const repo = p.links?.repo || "";
+  const demo = p.links?.demo || "";
 
-  body.innerHTML = `
-    <p>${escapeHtml(state.lang === "pt" ? p.description_pt : p.description_en)}</p>
-    ${(p.tags||[]).length ? `<div class="badges">${p.tags.map(t=>`<span class="badge">${escapeHtml(t)}</span>`).join("")}</div>` : ""}
+  $("#modalContent").innerHTML = `
+    <h3 class="cardTitle" style="font-size:20px;margin-top:0">${title}</h3>
+    <p class="cardText" style="margin-bottom:14px">${summary}</p>
+
+    ${details.length ? `<ul class="bullets">${details.map((d) => `<li>${d}</li>`).join("")}</ul>` : ""}
+
+    <div class="projectMeta" style="margin-top:14px">
+      ${(p.tags || []).map((t) => `<span class="pillTag">${t}</span>`).join("")}
+    </div>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      ${demo ? `<a class="btn primary" href="${demo}" target="_blank" rel="noreferrer">${LANG==="en"?"Open site":"Abrir site"}</a>` : ""}
+      ${repo ? `<a class="btn ghost" href="${repo}" target="_blank" rel="noreferrer">${LANG==="en"?"Open repo":"Abrir repo"}</a>` : ""}
+    </div>
   `;
 
-  actions.innerHTML = "";
-  (p.links||[]).forEach(l => {
-    const a = document.createElement("a");
-    a.className = "btn primary";
-    a.href = l.url;
-    a.target = "_blank";
-    a.rel = "noopener";
-    a.textContent = l.label;
-    actions.appendChild(a);
+  $("#modal").classList.add("open");
+  $("#modal").setAttribute("aria-hidden", "false");
+}
+
+function closeModal() {
+  $("#modal").classList.remove("open");
+  $("#modal").setAttribute("aria-hidden", "true");
+}
+
+function setupModal() {
+  $("#modal")?.addEventListener("click", (e) => {
+    if (e.target?.dataset?.close) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
+}
+
+function fillTagSelect() {
+  const select = $("#tagSelect");
+  if (!select || !DATA) return;
+
+  const set = new Set();
+  (DATA.projects || []).forEach((p) => (p.tags || []).forEach((t) => set.add(t)));
+
+  const tags = Array.from(set).sort((a, b) => a.localeCompare(b));
+
+  // keep first option (All/Todos) then append
+  select.innerHTML = `<option value="all">${I18N[LANG].filter_all}</option>` + tags.map((t) => `<option value="${t}">${t}</option>`).join("");
+}
+
+/* =========================
+   SKILLS + CERTS from JSON
+========================= */
+function renderSkillsAndCerts() {
+  if (!DATA) return;
+
+  const hard = $("#hardSkills");
+  const soft = $("#softSkills");
+
+  hard.innerHTML = (DATA.hardSkills || []).map((s) => `<span class="tag">${s[LANG] || s.pt}</span>`).join("");
+  soft.innerHTML = (DATA.softSkills || []).map((s) => `<span class="tag">${s[LANG] || s.pt}</span>`).join("");
+
+  const now = $("#certsNow");
+  const next = $("#certsNext");
+
+  now.innerHTML = (DATA.certs?.now || []).map((c) => `<li>${c[LANG] || c.pt}</li>`).join("");
+  next.innerHTML = (DATA.certs?.next || []).map((c) => `<li>${c[LANG] || c.pt}</li>`).join("");
+}
+
+/* =========================
+   CURSOR ANIMATION
+========================= */
+function setupCursor() {
+  const c = $("#cursorGlow");
+  let x = -9999, y = -9999;
+  let tx = x, ty = y;
+
+  window.addEventListener("mousemove", (e) => {
+    tx = e.clientX; ty = e.clientY;
   });
 
-  modal.setAttribute("aria-hidden", "false");
+  function tick() {
+    x += (tx - x) * 0.18;
+    y += (ty - y) * 0.18;
+    c.style.transform = `translate(${x - 9}px, ${y - 9}px)`;
+    requestAnimationFrame(tick);
+  }
+  tick();
 }
 
-function closeModal(){
-  document.getElementById("modal")?.setAttribute("aria-hidden","true");
+/* =========================
+   NEURAL NETWORK BACKGROUND (Canvas)
+========================= */
+function setupNeural() {
+  const canvas = $("#neural");
+  const ctx = canvas.getContext("2d");
+
+  let w, h, dpr;
+  const points = [];
+  const N = 62;
+  const maxDist = 140;
+
+  function resize() {
+    dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+    w = canvas.width = Math.floor(window.innerWidth * dpr);
+    h = canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    points.length = 0;
+    for (let i = 0; i < N; i++) {
+      points.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35 * dpr,
+        vy: (Math.random() - 0.5) * 0.35 * dpr
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // nodes
+    for (const p of points) {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+    }
+
+    // lines
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        const a = points[i], b = points[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < maxDist * dpr) {
+          const t = 1 - dist / (maxDist * dpr);
+          // cyan ↔ pink alternation
+          ctx.strokeStyle = `rgba(34,240,255,${0.10 * t})`;
+          ctx.lineWidth = 1 * dpr;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+
+          ctx.strokeStyle = `rgba(255,43,214,${0.06 * t})`;
+          ctx.beginPath();
+          ctx.moveTo(a.x+1*dpr, a.y+1*dpr);
+          ctx.lineTo(b.x+1*dpr, b.y+1*dpr);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // nodes glow
+    for (const p of points) {
+      ctx.fillStyle = "rgba(34,240,255,.28)";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 1.6 * dpr, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = "rgba(255,43,214,.18)";
+      ctx.beginPath();
+      ctx.arc(p.x + 1.2*dpr, p.y + 1.2*dpr, 1.3 * dpr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize);
+  resize();
+  draw();
 }
 
-function escapeHtml(str){
-  return String(str ?? "")
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+/* =========================
+   LOAD JSON
+========================= */
+async function loadData() {
+  const res = await fetch("./data/projects.json", { cache: "no-store" });
+  DATA = await res.json();
 }
 
-function wire(){
-  document.getElementById("year").textContent = new Date().getFullYear();
-  document.getElementById("build").textContent = `build: ${new Date().toISOString().slice(0,10)}`;
+/* =========================
+   INIT
+========================= */
+function setupLangToggle() {
+  $("#langToggle").addEventListener("click", () => {
+    LANG = LANG === "pt" ? "en" : "pt";
+    localStorage.setItem("lang", LANG);
 
-  document.getElementById("toggleLang").addEventListener("click", () => {
-    state.lang = state.lang === "pt" ? "en" : "pt";
     applyI18n();
-    setNow();
+    fillTagSelect();
+    renderSkillsAndCerts();
     renderProjects();
   });
-
-  document.getElementById("search").addEventListener("input", renderProjects);
-  document.getElementById("filter").addEventListener("change", renderProjects);
-
-  document.getElementById("closeModal").addEventListener("click", closeModal);
-  document.getElementById("modalBackdrop").addEventListener("click", closeModal);
-  document.addEventListener("keydown", (e)=>{ if(e.key==="Escape") closeModal(); });
 }
 
-(async function init(){
-  wire();
+function setupFilters() {
+  $("#searchInput").addEventListener("input", renderProjects);
+  $("#tagSelect").addEventListener("change", renderProjects);
+}
+
+function setupFooter() {
+  $("#year").textContent = new Date().getFullYear();
+  $("#buildStamp").textContent = formatNow(LANG);
+}
+
+(async function init() {
+  // stamp now (and update every second)
+  $("#nowText").textContent = formatNow(LANG);
+  setInterval(() => ($("#nowText").textContent = formatNow(LANG)), 1000);
+
+  setupCursor();
+  setupNeural();
+
+  await loadData();
+
   applyI18n();
-  setNow();
-  await loadProjects();
+  setupReveal();
+  setupEmailCopy();
+  setupModal();
+
+  renderSkillsAndCerts();
+  fillTagSelect();
+  renderProjects();
+
+  setupFilters();
+  setupLangToggle();
+  setupFooter();
 })();
+
