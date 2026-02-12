@@ -1,191 +1,249 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thabata Santos | Cloud & Infrastructure</title>
-  <meta name="description" content="Portfólio de Thabata Santos — Cloud, AWS, Infra, Engenharia da Computação." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<body>
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
+    <title>Thabata Santos — Cloud & Infra</title>
+    <meta
+      name="description"
+      content="Portfólio — Cloud & Infrastructure, AWS, Redes, Automação e Projetos."
+    />
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="logo">TS</div>
-      <div class="brand-text">
-        <div class="name">Thabata Santos</div>
-        <div class="tag" id="tagline">Cloud & Infrastructure • AWS • Computer Engineering</div>
-      </div>
-    </div>
+    <!-- FAVICON (use os arquivos em /assets) -->
+    <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
 
-    <nav class="nav">
-      <a href="#about" data-i18n="nav.about">Sobre</a>
-      <a href="#projects" data-i18n="nav.projects">Projetos</a>
-      <a href="#certs" data-i18n="nav.certs">Certificações</a>
-      <a href="#contact" data-i18n="nav.contact">Contato</a>
-      <button class="btn ghost" id="toggleLang" type="button" aria-label="Toggle language">PT/EN</button>
-    </nav>
-  </header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <h1 class="title">
-          <span class="neon">Cloud</span> + <span class="neon2">Infra</span><br/>
-          <span class="muted" data-i18n="hero.subtitle">Construindo sistemas resilientes e escaláveis.</span>
-        </h1>
+    <!-- Fonte cyberpunk (opcional, mas fica bonita) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-        <p class="lead" data-i18n="hero.lead">
-          Estudante de Engenharia da Computação, focada em AWS, redes e infraestrutura. Portfólio com labs, automações e projetos.
-        </p>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-        <div class="cta-row">
-          <a class="btn primary" href="#projects" data-i18n="hero.ctaProjects">Ver projetos</a>
-          <a class="btn" href="mailto:thabata@thabatasantos.com">thabata@thabatasantos.com</a>
-        </div>
+  <body>
+    <!-- cursor neon -->
+    <div id="cursorGlow" aria-hidden="true"></div>
 
-        <div class="chips">
-          <span class="chip">AWS</span>
-          <span class="chip" data-i18n="chips.networks">Redes</span>
-          <span class="chip">Linux</span>
-          <span class="chip">IaC</span>
-          <span class="chip">GitHub</span>
+    <!-- background neural -->
+    <canvas id="neural" aria-hidden="true"></canvas>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brandMark" aria-hidden="true">TS</div>
+        <div class="brandText">
+          <div class="brandName">Thabata Santos</div>
+          <div class="brandSub">Cloud & Infrastructure • AWS • Computer Engineering</div>
         </div>
       </div>
 
-      <div class="hero-right">
-        <div class="card holo">
-          <div class="card-title" data-i18n="hero.panelTitle">Status • Portfólio</div>
-          <div class="kv">
-            <div class="k" data-i18n="hero.panelRole">Foco</div><div class="v">Cloud / Infra / AWS</div>
-            <div class="k" data-i18n="hero.panelNow">Agora</div><div class="v" id="nowText">Carregando…</div>
-            <div class="k" data-i18n="hero.panelMode">Modo</div><div class="v"><span class="dot"></span> Online</div>
-          </div>
-          <div class="card-footer">
-            <span class="tiny" data-i18n="hero.panelHint">Dica: clique nos cards para expandir.</span>
-          </div>
-        </div>
-      </div>
-    </section>
+      <nav class="nav">
+        <a href="#sobre" data-i18n="nav_about">Sobre</a>
+        <a href="#projetos" data-i18n="nav_projects">Projetos</a>
+        <a href="#certificacoes" data-i18n="nav_certs">Certificações</a>
+        <a href="#contato" data-i18n="nav_contact">Contato</a>
 
-    <section id="about" class="section">
-      <div class="section-head">
-        <h2 class="section-title" data-i18n="about.title">Sobre</h2>
-        <p class="section-sub" data-i18n="about.sub">Um resumo rápido, direto e profissional.</p>
-      </div>
+        <button id="langToggle" class="pill" type="button" aria-label="Alternar idioma">
+          <span id="langLabel">PT</span>/<span id="langLabel2">EN</span>
+        </button>
+      </nav>
+    </header>
 
-      <div class="grid two">
-        <div class="card">
-          <h3 data-i18n="about.card1.title">Quem sou</h3>
-          <p data-i18n="about.card1.body">
-            Sou estudante de Engenharia da Computação e estou em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="heroLeft reveal">
+          <h1 class="heroTitle">
+            <span class="neonCyan">Cloud</span>
+            <span class="plus">+</span>
+            <span class="neonPink">Infra</span>
+          </h1>
+
+          <p class="heroLead" data-i18n="hero_lead">
+            Construindo sistemas resilientes e escaláveis.
           </p>
-        </div>
 
-        <div class="card">
-          <h3 data-i18n="about.card2.title">Stack & interesses</h3>
-          <ul class="list">
-            <li><span class="bullet"></span> AWS (EC2, VPC, S3, RDS, Lambda, Route 53)</li>
-            <li><span class="bullet"></span> Linux, redes, troubleshooting</li>
-            <li><span class="bullet"></span> Infra como código (IaC) e automação</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+          <p class="heroBody" data-i18n="hero_body">
+            Estudante de Engenharia da Computação, focada em AWS, redes e infraestrutura.
+            Portfólio com labs, automações e projetos replicáveis.
+          </p>
 
-    <section id="projects" class="section">
-      <div class="section-head">
-        <h2 class="section-title" data-i18n="projects.title">Projetos</h2>
-        <p class="section-sub" data-i18n="projects.sub">Cards dinâmicos carregados de JSON.</p>
-      </div>
+          <div class="heroActions">
+            <a class="btn primary" href="#projetos" data-i18n="hero_cta_projects">Ver projetos</a>
+            <button class="btn ghost" id="copyEmailBtn" type="button" title="Copiar e-mail">
+              <span class="icon">✉</span>
+              <span id="emailText">thabata@thabatasantos.com</span>
+            </button>
+          </div>
 
-      <div class="toolbar">
-        <input id="search" class="input" type="search" placeholder="Buscar projeto..." />
-        <select id="filter" class="input">
-          <option value="all" data-i18n="projects.filterAll">Todos</option>
-          <option value="aws">AWS</option>
-          <option value="network" data-i18n="projects.filterNetwork">Redes</option>
-          <option value="automation" data-i18n="projects.filterAutomation">Automação</option>
-        </select>
-      </div>
-
-      <div id="projectsGrid" class="grid three"></div>
-    </section>
-
-    <section id="certs" class="section">
-      <div class="section-head">
-        <h2 class="section-title" data-i18n="certs.title">Certificações & estudos</h2>
-        <p class="section-sub" data-i18n="certs.sub">Você pode atualizar isso em minutos.</p>
-      </div>
-
-      <div class="grid two">
-        <div class="card">
-          <h3 data-i18n="certs.card1.title">Em andamento</h3>
-          <ul class="list">
-            <li><span class="bullet"></span> AWS Cloud Practitioner (CLF)</li>
-            <li><span class="bullet"></span> Labs e projetos de infraestrutura</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3 data-i18n="certs.card2.title">Próximas</h3>
-          <ul class="list">
-            <li><span class="bullet"></span> Redes (fundamentos + prática)</li>
-            <li><span class="bullet"></span> Automação (scripts, IaC)</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <div class="section-head">
-        <h2 class="section-title" data-i18n="contact.title">Contato</h2>
-        <p class="section-sub" data-i18n="contact.sub">Links e formas fáceis de falar com você.</p>
-      </div>
-
-      <div class="grid two">
-        <div class="card">
-          <h3 data-i18n="contact.card1.title">Email</h3>
-          <p><a class="link" href="mailto:thabata@thabatasantos.com">thabata@thabatasantos.com</a></p>
-          <p class="tiny" data-i18n="contact.card1.hint">Respondo mais rápido por email.</p>
-        </div>
-        <div class="card">
-          <h3 data-i18n="contact.card2.title">Social</h3>
-          <p class="tiny" data-i18n="contact.card2.hint">Depois você cola seus links aqui:</p>
-          <div class="links">
-            <a class="btn ghost" href="#" id="linkedinBtn" aria-disabled="true">LinkedIn</a>
-            <a class="btn ghost" href="#" id="githubBtn" aria-disabled="true">GitHub</a>
+          <div class="chips">
+            <span class="chip">AWS</span>
+            <span class="chip" data-i18n="chip_networks">Redes</span>
+            <span class="chip">Linux</span>
+            <span class="chip">IaC</span>
+            <span class="chip">GitHub</span>
           </div>
         </div>
-      </div>
-    </section>
 
-    <footer class="footer">
-      <span class="tiny">© <span id="year"></span> Thabata Santos • <span class="tiny" id="build"></span></span>
-    </footer>
-  </main>
+        <div class="heroRight reveal">
+          <div class="glassCard">
+            <div class="miniTitle" data-i18n="panel_title">Highlights</div>
 
-  <div class="modal" id="modal" aria-hidden="true">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-card" role="dialog" aria-modal="true">
-      <div class="modal-head">
-        <div>
-          <div class="modal-title" id="modalTitle"></div>
-          <div class="modal-sub" id="modalSub"></div>
+            <div class="miniGrid">
+              <div class="miniRow">
+                <div class="miniK" data-i18n="panel_focus_k">Foco</div>
+                <div class="miniV">Cloud / Infra / AWS</div>
+              </div>
+
+              <div class="miniRow">
+                <div class="miniK" data-i18n="panel_now_k">Agora</div>
+                <div class="miniV" id="nowText">—</div>
+              </div>
+
+              <div class="miniRow">
+                <div class="miniK" data-i18n="panel_mode_k">Modo</div>
+                <div class="miniV"><span class="dot"></span><span data-i18n="panel_online">Online</span></div>
+              </div>
+            </div>
+
+            <div class="miniHint" data-i18n="panel_hint">
+              Dica: clique nos cards para expandir.
+            </div>
+          </div>
         </div>
-        <button class="btn ghost" id="closeModal" type="button">Fechar</button>
-      </div>
-      <div class="modal-body" id="modalBody"></div>
-      <div class="modal-actions" id="modalActions"></div>
-    </div>
-  </div>
+      </section>
 
-  <script src="app.js"></script>
-</body>
+      <!-- SOBRE -->
+      <section id="sobre" class="section">
+        <h2 class="sectionTitle center" data-i18n="sec_about">Sobre</h2>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="about_who_title">Quem sou</h3>
+            <p class="cardText" data-i18n="about_who_body">
+              Sou estudante de Engenharia da Computação em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="about_stack_title">Stack & interesses</h3>
+            <ul class="bullets">
+              <li data-i18n="about_stack_1">AWS (EC2, VPC, S3, RDS, Lambda, Route 53)</li>
+              <li data-i18n="about_stack_2">Linux, redes, troubleshooting</li>
+              <li data-i18n="about_stack_3">Infra como código (IaC) e automação</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- SKILLS -->
+        <div class="grid2 mt24">
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="skills_hard_title">Hard skills</h3>
+            <div class="tagGrid" id="hardSkills"></div>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="skills_soft_title">Soft skills</h3>
+            <div class="tagGrid" id="softSkills"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJETOS -->
+      <section id="projetos" class="section">
+        <h2 class="sectionTitle center" data-i18n="sec_projects">Projetos</h2>
+
+        <div class="filters reveal">
+          <input id="searchInput" class="input" type="search" placeholder="Buscar projeto..." />
+          <select id="tagSelect" class="select">
+            <option value="all" data-i18n="filter_all">Todos</option>
+          </select>
+        </div>
+
+        <div id="projectsGrid" class="cards3"></div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal" aria-hidden="true">
+          <div class="modalBackdrop" data-close="1"></div>
+          <div class="modalCard" role="dialog" aria-modal="true" aria-label="Detalhes do projeto">
+            <button class="modalClose" type="button" data-close="1" aria-label="Fechar">✕</button>
+            <div id="modalContent"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CERTIFICAÇÕES -->
+      <section id="certificacoes" class="section">
+        <h2 class="sectionTitle center" data-i18n="sec_certs">Certificações & estudos</h2>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="certs_in_progress">Em andamento</h3>
+            <ul class="bullets" id="certsNow"></ul>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="certs_next">Próximas</h3>
+            <ul class="bullets" id="certsNext"></ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTATO -->
+      <section id="contato" class="section">
+        <h2 class="sectionTitle center" data-i18n="sec_contact">Contato</h2>
+        <p class="sectionSubtitle center" data-i18n="contact_subtitle">Vamos nos conectar?</p>
+
+        <div class="grid2">
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="contact_email_title">E-mail</h3>
+            <p class="cardText">
+              <a class="link neon" href="mailto:thabata@thabatasantos.com" id="emailLink">
+                thabata@thabatasantos.com
+              </a>
+            </p>
+
+            <div class="iconRow">
+              <button class="iconBtn" id="copyEmailBtn2" type="button" title="Copiar e-mail">
+                <span class="svg">✉</span>
+              </button>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <h3 class="cardTitle" data-i18n="contact_social_title">Social</h3>
+            <div class="iconRow">
+              <a class="iconBtn" id="linkedinBtn" href="#" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                in
+              </a>
+              <a class="iconBtn" id="githubBtn" href="#" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
+                ⌂
+              </a>
+              <a class="iconBtn" id="emailBtn" href="mailto:thabata@thabatasantos.com" title="E-mail" aria-label="E-mail">
+                ✉
+              </a>
+            </div>
+
+            <div class="hint" data-i18n="contact_hint">
+              (Você vai colar seus links no app.js)
+            </div>
+          </article>
+        </div>
+
+        <footer class="footer">
+          <span>© <span id="year"></span> Thabata Santos</span>
+          <span class="sep">•</span>
+          <span data-i18n="footer_build">build:</span> <span id="buildStamp"></span>
+        </footer>
+      </section>
+    </main>
+
+    <script defer src="./app.js"></script>
+  </body>
 </html>
+
 
