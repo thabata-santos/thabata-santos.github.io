@@ -1,31 +1,106 @@
-[
-  {
-    "title": "Cafeteria AWS Labs (Arquitetura)",
-    "subtitle": "VPC • Subnets • EC2 • ALB/ASG",
-    "category": "aws",
-    "tags": ["AWS", "VPC", "EC2", "ALB", "Auto Scaling"],
-    "description_pt": "Cole aqui um resumo do lab/arquitetura (o que você construiu, por quê, e como validar).",
-    "description_en": "Paste a short summary of the lab/architecture (what you built, why, and how to validate).",
-    "links": [
-      { "label": "Repo", "url": "https://github.com/thabata-santos" }
+{
+  "projects": [
+    {
+      "id": "aws-cafe-arch",
+      "title": { "pt": "Cafeteria AWS Labs (Arquitetura)", "en": "AWS Cafe Labs (Architecture)" },
+      "summary": {
+        "pt": "VPC + Subnets + EC2 + ALB/ASG. Projeto replicável com validação por DNS e health checks.",
+        "en": "VPC + Subnets + EC2 + ALB/ASG. Replicable project validated via DNS and health checks."
+      },
+      "tags": ["AWS", "VPC", "EC2", "ALB", "Auto Scaling"],
+      "links": {
+        "repo": "",
+        "demo": ""
+      },
+      "details": {
+        "pt": [
+          "O que construí: rede, instâncias e balanceamento com escalabilidade.",
+          "Por quê? tolerância a falhas + capacidade sob demanda.",
+          "Como validar: health checks, DNS e testes de carga."
+        ],
+        "en": [
+          "What I built: network, instances, load balancing with scalability.",
+          "Why: fault tolerance + on-demand capacity.",
+          "How to validate: health checks, DNS and load tests."
+        ]
+      }
+    },
+    {
+      "id": "email-cloudflare",
+      "title": { "pt": "E-mail Profissional (Cloudflare Routing)", "en": "Professional Email (Cloudflare Routing)" },
+      "summary": {
+        "pt": "MX/SPF/DKIM e envio via Gmail SMTP. Sem Workspace: roteamento + autenticação.",
+        "en": "MX/SPF/DKIM and send via Gmail SMTP. No Workspace: routing + authentication."
+      },
+      "tags": ["Cloudflare", "DNS", "SPF", "DKIM", "SMTP"],
+      "links": {
+        "repo": "",
+        "demo": ""
+      },
+      "details": {
+        "pt": [
+          "Roteamento de e-mail com endereços personalizados.",
+          "Configuração de DNS e validação de autenticação.",
+          "Envio como alias no Gmail."
+        ],
+        "en": [
+          "Email routing with custom addresses.",
+          "DNS setup and authentication validation.",
+          "Send as alias in Gmail."
+        ]
+      }
+    },
+    {
+      "id": "portfolio-pages",
+      "title": { "pt": "Portfólio Cyberpunk (GitHub Pages)", "en": "Cyberpunk Portfolio (GitHub Pages)" },
+      "summary": {
+        "pt": "Site estático com cards dinâmicos via JSON e fluxo dev → PR → main → deploy.",
+        "en": "Static site with dynamic JSON cards and dev → PR → main → deploy flow."
+      },
+      "tags": ["GitHub Pages", "CI/CD", "PR Flow"],
+      "links": {
+        "repo": "https://github.com/thabata-santos/thabata-santos.github.io",
+        "demo": "https://thabatasantos.com"
+      },
+      "details": {
+        "pt": [
+          "Cards carregados do projects.json.",
+          "Busca e filtro por tags.",
+          "Animações no scroll + modal de detalhes."
+        ],
+        "en": [
+          "Cards loaded from projects.json.",
+          "Search and tag filters.",
+          "Scroll animations + details modal."
+        ]
+      }
+    }
+  ],
+
+  "hardSkills": [
+    { "pt": "AWS (EC2, VPC, S3, RDS)", "en": "AWS (EC2, VPC, S3, RDS)" },
+    { "pt": "Redes (subnets, DNS, routing)", "en": "Networking (subnets, DNS, routing)" },
+    { "pt": "Linux & Troubleshooting", "en": "Linux & Troubleshooting" },
+    { "pt": "IaC (conceitos, automação)", "en": "IaC (concepts, automation)" },
+    { "pt": "Git/GitHub (branches, PR)", "en": "Git/GitHub (branches, PR)" }
+  ],
+
+  "softSkills": [
+    { "pt": "Comunicação clara", "en": "Clear communication" },
+    { "pt": "Organização e disciplina", "en": "Organization and discipline" },
+    { "pt": "Aprendizado rápido", "en": "Fast learning" },
+    { "pt": "Resolução de problemas", "en": "Problem solving" },
+    { "pt": "Colaboração", "en": "Collaboration" }
+  ],
+
+  "certs": {
+    "now": [
+      { "pt": "AWS Cloud Practitioner (CLF)", "en": "AWS Cloud Practitioner (CLF)" },
+      { "pt": "Labs e projetos de infraestrutura", "en": "Infrastructure labs and projects" }
+    ],
+    "next": [
+      { "pt": "Redes (fundamentos + prática)", "en": "Networking (fundamentals + practice)" },
+      { "pt": "Automação (scripts, IaC)", "en": "Automation (scripts, IaC)" }
     ]
-  },
-  {
-    "title": "Email Profissional com Cloudflare",
-    "subtitle": "Routing • SPF • DKIM • Gmail SMTP",
-    "category": "automation",
-    "tags": ["Cloudflare", "DNS", "SPF", "DKIM", "Gmail SMTP"],
-    "description_pt": "Infra de e-mail com domínio próprio sem Workspace: roteamento + autenticação e envio como domínio.",
-    "description_en": "Custom-domain email without Workspace: routing + auth and sending as your domain.",
-    "links": []
-  },
-  {
-    "title": "Portfólio Cyberpunk (GitHub Pages)",
-    "subtitle": "Deploy • PR flow • Main + Dev",
-    "category": "automation",
-    "tags": ["GitHub Pages", "CI/CD", "PR Flow"],
-    "description_pt": "Site publicado via GitHub Pages seguindo fluxo profissional (dev → PR → merge → deploy).",
-    "description_en": "Site deployed via GitHub Pages using a professional flow (dev → PR → merge → deploy).",
-    "links": []
   }
-]
+}
