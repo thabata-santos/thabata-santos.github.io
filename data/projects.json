@@ -1,0 +1,31 @@
+[
+  {
+    "title": "Cafeteria AWS Labs (Arquitetura)",
+    "subtitle": "VPC • Subnets • EC2 • ALB/ASG",
+    "category": "aws",
+    "tags": ["AWS", "VPC", "EC2", "ALB", "Auto Scaling"],
+    "description_pt": "Cole aqui um resumo do lab/arquitetura (o que você construiu, por quê, e como validar).",
+    "description_en": "Paste a short summary of the lab/architecture (what you built, why, and how to validate).",
+    "links": [
+      { "label": "Repo", "url": "https://github.com/thabata-santos" }
+    ]
+  },
+  {
+    "title": "Email Profissional com Cloudflare",
+    "subtitle": "Routing • SPF • DKIM • Gmail SMTP",
+    "category": "automation",
+    "tags": ["Cloudflare", "DNS", "SPF", "DKIM", "Gmail SMTP"],
+    "description_pt": "Infra de e-mail com domínio próprio sem Workspace: roteamento + autenticação e envio como domínio.",
+    "description_en": "Custom-domain email without Workspace: routing + auth and sending as your domain.",
+    "links": []
+  },
+  {
+    "title": "Portfólio Cyberpunk (GitHub Pages)",
+    "subtitle": "Deploy • PR flow • Main + Dev",
+    "category": "automation",
+    "tags": ["GitHub Pages", "CI/CD", "PR Flow"],
+    "description_pt": "Site publicado via GitHub Pages seguindo fluxo profissional (dev → PR → merge → deploy).",
+    "description_en": "Site deployed via GitHub Pages using a professional flow (dev → PR → merge → deploy).",
+    "links": []
+  }
+]
