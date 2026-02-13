@@ -1,206 +1,208 @@
-<!doctype html>
-<html lang="en" data-theme="auto">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Thabata Santos • Cloud & Infra</title>
-  <meta name="description" content="Portfolio • Cloud & Infrastructure • AWS • Networking • Automation • Projects." />
+<title>Thabata Santos — Cloud & Infrastructure</title>
 
-  <!-- Favicons (dark/light + fallbacks) -->
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon-dark.svg" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon-light.svg" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="../assets/favicon/favicon.ico" sizes="any" />
-  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16.png" />
-  <link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/favicon-512.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
-  <meta name="theme-color" content="#0b0f1a" />
+<meta name="description"
+content="Portfolio — Cloud & Infrastructure, AWS, Networking, Automation and Projects." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16.png">
+<link rel="icon" type="image/png" sizes="512x512" href="../assets/favicon/favicon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+<meta name="theme-color" content="#0f0f1a">
 
-  <link rel="stylesheet" href="../styles.css" />
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="../styles.css">
+
+<!-- Three.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<!-- Scripts -->
+<script defer src="../app.js"></script>
+<script defer src="../brain.js"></script>
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22f0ff"/>
+      <stop offset="100%" stop-color="#ff2bd6"/>
+    </linearGradient>
+  </defs>
+</svg>
+
 </head>
 
 <body>
-  <canvas id="neuralCanvas" aria-hidden="true"></canvas>
-  <div class="cursor-dot" aria-hidden="true"></div>
-  <div class="cursor-ring" aria-hidden="true"></div>
 
-  <header class="topbar">
+<!-- Cursor Glow -->
+<div id="cursorGlow"></div>
+
+<!-- Neural Background -->
+<canvas id="neural"></canvas>
+
+<header class="header">
+  <div class="container nav">
+
     <div class="brand">
-      <div class="brand-mark" aria-hidden="true">TS</div>
-      <div class="brand-text">
-        <div class="brand-name">Thabata Santos</div>
-        <div class="brand-sub">Cloud & Infrastructure • AWS • Computer Engineering</div>
+      <div class="logo">TS</div>
+      <div>
+        <strong>Thabata Santos</strong><br>
+        <span class="muted">Cloud & Infrastructure • AWS • Computer Engineering</span>
       </div>
     </div>
 
-    <nav class="nav">
+    <nav class="navLinks">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#certs">Certifications</a>
       <a href="#contact">Contact</a>
-      <button class="chip" id="langToggle" type="button" aria-label="Switch language">PT/EN</button>
-      <button class="chip ghost" id="themeToggle" type="button" aria-label="Toggle theme">Theme</button>
+      <a href="../">PT</a>
     </nav>
-  </header>
 
-  <main class="container">
-    <section class="hero reveal">
-      <div class="hero-left">
-        <h1 class="hero-title">
-          <span class="neon-cyan">Cloud</span>
-          <span class="plus">+</span>
-          <span class="neon-pink">Infra</span>
-        </h1>
+  </div>
+</header>
 
-        <p class="hero-lead">Building resilient and scalable systems.</p>
+<!-- HERO -->
+<section class="hero">
 
-        <p class="hero-copy">
-          Computer Engineering student focused on AWS, networking, and infrastructure.
-          Portfolio with labs, automation, and reproducible projects.
-        </p>
+  <div class="container heroGrid">
 
-        <div class="hero-cta">
-          <a class="btn primary" href="#projects">See projects</a>
-          <a class="btn subtle" href="mailto:thabata@thabatasantos.com">thabata@thabatasantos.com</a>
-        </div>
+    <div class="heroLeft reveal">
+      <h1>
+        <span class="accentBlue">Cloud</span>
+        <span class="accentPink"> + Infra</span>
+      </h1>
 
-        <div class="pill-row">
-          <span class="pill">AWS</span>
-          <span class="pill">Networking</span>
-          <span class="pill">Linux</span>
-          <span class="pill">IaC</span>
-          <span class="pill">GitHub</span>
-        </div>
-      </div>
+      <p class="lead">
+        Building resilient and scalable systems.
+      </p>
 
-      <div class="hero-right reveal">
-        <div class="panel">
-          <div class="panel-title">Highlights</div>
-          <ul class="panel-list">
-            <li><span class="dot ok"></span>GitHub Pages + Custom Domain + SSL</li>
-            <li><span class="dot ok"></span>Email routing (SPF/DKIM/MX)</li>
-            <li><span class="dot ok"></span>AWS labs (VPC, EC2, ALB/ASG, Route 53)</li>
-          </ul>
-          <div class="panel-foot">Tip: hover the cards ✨</div>
-        </div>
-      </div>
-    </section>
+      <p class="sub">
+        Computer Engineering student focused on AWS, networking and infrastructure.
+        Portfolio with labs, automation and replicable projects.
+      </p>
 
-    <section id="about" class="section">
-      <h2 class="section-title center reveal">About</h2>
+      <a href="#projects" class="btn primary">View projects</a>
+    </div>
 
-      <div class="grid-2">
-        <article class="card reveal">
-          <h3>Who I am</h3>
-          <p>
-            I’m a Computer Engineering student transitioning into Cloud/Infra.
-            I learn by building labs, troubleshooting, and shipping reproducible projects.
-          </p>
-        </article>
+    <div class="heroRight reveal">
+      <div id="brainContainer"></div>
+    </div>
 
-        <article class="card reveal">
-          <h3>Stack & interests</h3>
-          <ul class="bullets">
-            <li>AWS (EC2, VPC, S3, RDS, Lambda, Route 53)</li>
-            <li>Linux, networking, troubleshooting</li>
-            <li>Infrastructure as Code (IaC) and automation</li>
-          </ul>
-        </article>
-      </div>
+  </div>
 
-      <div class="grid-2">
-        <article class="card reveal">
-          <h3>Hard skills</h3>
-          <div class="tags" id="hardSkills"></div>
-        </article>
+</section>
 
-        <article class="card reveal">
-          <h3>Soft skills</h3>
-          <div class="tags" id="softSkills"></div>
-        </article>
-      </div>
-    </section>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <h2 class="sectionTitle center">About</h2>
 
-    <section id="projects" class="section">
-      <h2 class="section-title center reveal">Projects</h2>
+  <div class="container grid2">
+    <div class="card reveal">
+      <h3>Who I am</h3>
+      <p>
+        Computer Engineering student transitioning into Cloud & Infrastructure.
+        I learn by doing labs and building real-world projects.
+      </p>
+    </div>
 
-      <div class="filters reveal">
-        <input id="projectSearch" class="input" placeholder="Search projects..." />
-        <select id="projectFilter" class="select" aria-label="Filter by tag">
-          <option value="all">All</option>
-        </select>
-      </div>
+    <div class="card reveal">
+      <h3>Stack & Interests</h3>
+      <ul class="bullets">
+        <li>AWS (EC2, VPC, S3, RDS, Lambda, Route 53)</li>
+        <li>Linux & Networking</li>
+        <li>Infrastructure as Code & Automation</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-      <div id="projectsGrid" class="cards"></div>
-    </section>
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <h2 class="sectionTitle center">Projects</h2>
 
-    <section id="certs" class="section">
-      <h2 class="section-title center reveal">Certifications & study</h2>
+  <div class="container">
+    <div id="projectsGrid" class="grid3"></div>
+  </div>
+</section>
 
-      <div class="grid-2">
-        <article class="card reveal">
-          <h3>In progress</h3>
-          <ul class="bullets">
-            <li>AWS Cloud Practitioner (CLF)</li>
-            <li>Infrastructure labs & projects</li>
-          </ul>
-        </article>
+<!-- CERTIFICATIONS -->
+<section id="certs" class="section">
+  <h2 class="sectionTitle center">Certifications & Learning</h2>
 
-        <article class="card reveal">
-          <h3>Next</h3>
-          <ul class="bullets">
-            <li>Networking (fundamentals + hands-on)</li>
-            <li>Automation (scripts, IaC)</li>
-          </ul>
-        </article>
-      </div>
-    </section>
+  <div class="container grid2">
+    <div class="card reveal">
+      <h3>In progress</h3>
+      <ul id="certsNow" class="bullets"></ul>
+    </div>
 
-    <section id="contact" class="section">
-      <h2 class="section-title center reveal">Let’s connect</h2>
+    <div class="card reveal">
+      <h3>Next</h3>
+      <ul id="certsNext" class="bullets"></ul>
+    </div>
+  </div>
+</section>
 
-      <div class="grid-2">
-        <article class="card reveal">
-          <h3>Contact</h3>
-          <div class="contact-row">
-            <a class="icon-btn" id="emailLink" href="mailto:thabata@thabatasantos.com" aria-label="Email">
-              <span class="ico" aria-hidden="true">✉</span>
-              <span class="txt">thabata@thabatasantos.com</span>
-            </a>
-          </div>
-          <p class="muted">Email is the fastest way.</p>
-        </article>
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2 class="sectionTitle center">Contact</h2>
+<div class="socialWrap reveal">
+  <h3 class="socialTitle" data-i18n="contact_social_title">Social</h3>
 
-        <article class="card reveal">
-          <h3>Social</h3>
-          <div class="social">
-            <a class="icon-btn" id="linkedinLink" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-              <span class="ico" aria-hidden="true">in</span>
-              <span class="txt">LinkedIn</span>
-            </a>
-            <a class="icon-btn" id="githubLink" href="#" target="_blank" rel="noreferrer" aria-label="GitHub">
-              <span class="ico" aria-hidden="true">⌂</span>
-              <span class="txt">GitHub</span>
-            </a>
-          </div>
-          <p class="muted">Opens in a new tab.</p>
-        </article>
-      </div>
-    </section>
+  <div class="socialIcons">
 
-    <footer class="footer">
-      <span>© <span id="year"></span> Thabata Santos</span>
-      <span class="sep">•</span>
-      <span>build: <span id="buildStamp"></span></span>
-    </footer>
-  </main>
+    <a class="iconBtn" id="linkedinBtn" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+      <!-- LinkedIn SVG Neon -->
+      <svg class="iconSvg" viewBox="0 0 64 64">
+        <rect x="10" y="10" width="44" height="44" rx="12"
+              fill="rgba(255,255,255,0.04)"
+              stroke="url(#grad1)" stroke-width="2"/>
+        <text x="32" y="40" text-anchor="middle"
+              font-size="22" font-family="Orbitron"
+              fill="url(#grad1)">in</text>
+      </svg>
+    </a>
 
-  <script src="../app.js"></script>
+    <a class="iconBtn" id="githubBtn" href="#" target="_blank" rel="noreferrer" aria-label="GitHub">
+      <svg class="iconSvg" viewBox="0 0 64 64">
+        <rect x="10" y="10" width="44" height="44" rx="12"
+              fill="rgba(255,255,255,0.04)"
+              stroke="url(#grad1)" stroke-width="2"/>
+        <text x="32" y="40" text-anchor="middle"
+              font-size="18" font-family="Orbitron"
+              fill="url(#grad1)">GH</text>
+      </svg>
+    </a>
+
+    <a class="iconBtn" id="emailBtn" href="#" aria-label="Email">
+      <svg class="iconSvg" viewBox="0 0 64 64">
+        <rect x="10" y="10" width="44" height="44" rx="12"
+              fill="rgba(255,255,255,0.04)"
+              stroke="url(#grad1)" stroke-width="2"/>
+        <text x="32" y="40" text-anchor="middle"
+              font-size="18" font-family="Orbitron"
+              fill="url(#grad1)">@</text>
+      </svg>
+    </a>
+
+  </div>
+</div>
+
+</section>
+
+<footer class="footer">
+  © <span id="year"></span> Thabata Santos
+</footer>
+
 </body>
 </html>

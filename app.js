@@ -312,41 +312,45 @@ function renderSkillsAndCerts() {
   next.innerHTML = (DATA.certs?.next || []).map((c) => `<li>${c[LANG] || c.pt}</li>`).join("");
 }
 
-/* =========================
-   CURSOR ANIMATION
-========================= */
-function setupCursor() {
-  const c = $("#cursorGlow");
-  let x = -9999, y = -9999;
-  let tx = x, ty = y;
+/* ================= PREMIUM CURSOR ================= */
 
-  window.addEventListener("mousemove", (e) => {
-    tx = e.clientX;
-    ty = e.clientY;
-  });
+const cursor = document.querySelector('.cursor');
 
-  function tick() {
-    x += (tx - x) * 0.14;
-    y += (ty - y) * 0.14;
-    c.style.transform = `translate(${x - 9}px, ${y - 9}px)`;
-    requestAnimationFrame(tick);
-  }
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
 
-  tick();
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
 
-  // Hover premium
-  const hoverElements = document.querySelectorAll("a, button, .card, .projectCard");
+function animateCursor() {
+  currentX += (mouseX - currentX) * 0.12;
+  currentY += (mouseY - currentY) * 0.12;
 
-  hoverElements.forEach(el => {
-    el.addEventListener("mouseenter", () => {
-      c.classList.add("cursor-hover");
-    });
+  cursor.style.left = currentX + 'px';
+  cursor.style.top = currentY + 'px';
 
-    el.addEventListener("mouseleave", () => {
-      c.classList.remove("cursor-hover");
-    });
-  });
+  requestAnimationFrame(animateCursor);
 }
+
+animateCursor();
+
+/* HOVER EFFECT */
+
+const interactiveElements = document.querySelectorAll('a, button, .card, .project-card');
+
+interactiveElements.forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('cursor-hover');
+  });
+
+  el.addEventListener('mouseleave', () => {
+    cursor.classList.remove('cursor-hover');
+  });
+});
 
 /* =========================
    NEURAL NETWORK BACKGROUND (Canvas)
@@ -491,4 +495,25 @@ function setupFooter() {
   setupLangToggle();
   setupFooter();
 })();
+function setupCursorReactive() {
+  const cursor = document.getElementById("cursorGlow");
+
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  document.querySelectorAll("a, button, .glassCard").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.background = "var(--neon-blue)";
+      cursor.style.transform = "scale(1.8)";
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.style.background = "var(--neon-pink)";
+      cursor.style.transform = "scale(1)";
+    });
+  });
+}
+
+setupCursorReactive();
 
