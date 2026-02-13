@@ -2,7 +2,7 @@
    CONFIG — COLE SEUS LINKS AQUI
 ========================= */
 const PROFILE_LINKS = {
-  linkedin: "www.linkedin.com/in/thabata-santos",
+  linkedin: "https://www.linkedin.com/in/thabata-santos",
   github: "https://github.com/thabata-santos",
   email: "thabata@thabatasantos.com"
 };
@@ -32,7 +32,7 @@ const I18N = {
     sec_about: "Sobre",
     about_who_title: "Quem sou",
     about_who_body:
-      "Sou estudante de Engenharia da Computação em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
+      "Estudante de Engenharia da Computação com foco em Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
     about_stack_title: "Stack & interesses",
     about_stack_1: "AWS (EC2, VPC, S3, RDS, Lambda, Route 53)",
     about_stack_2: "Linux, redes, troubleshooting",
@@ -321,16 +321,31 @@ function setupCursor() {
   let tx = x, ty = y;
 
   window.addEventListener("mousemove", (e) => {
-    tx = e.clientX; ty = e.clientY;
+    tx = e.clientX;
+    ty = e.clientY;
   });
 
   function tick() {
-    x += (tx - x) * 0.18;
-    y += (ty - y) * 0.18;
+    x += (tx - x) * 0.14;
+    y += (ty - y) * 0.14;
     c.style.transform = `translate(${x - 9}px, ${y - 9}px)`;
     requestAnimationFrame(tick);
   }
+
   tick();
+
+  // Hover premium
+  const hoverElements = document.querySelectorAll("a, button, .card, .projectCard");
+
+  hoverElements.forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      c.classList.add("cursor-hover");
+    });
+
+    el.addEventListener("mouseleave", () => {
+      c.classList.remove("cursor-hover");
+    });
+  });
 }
 
 /* =========================
