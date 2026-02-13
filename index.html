@@ -33,6 +33,14 @@
 
 <!-- Brain 3D -->
 <script defer src="./brain.js"></script>
+<svg width="0" height="0">
+  <defs>
+    <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#22f0ff"/>
+      <stop offset="100%" stop-color="#ff2bd6"/>
+    </linearGradient>
+  </defs>
+</svg>
 
   </head>
 
@@ -182,46 +190,84 @@
         </div>
       </section>
 
-      <!-- CONTATO -->
-      <section id="contato" class="section">
-        <h2 class="sectionTitle center" data-i18n="sec_contact">Contato</h2>
-        <p class="sectionSubtitle center" data-i18n="contact_subtitle">Vamos nos conectar?</p>
+  <div class="socialWrap reveal">
+  <h3 class="socialTitle" data-i18n="contact_social_title">Social</h3>
 
-        <div class="grid2">
-          <article class="card reveal">
-            <h3 class="cardTitle" data-i18n="contact_email_title">E-mail</h3>
-            <p class="cardText">
-              <a class="link neon" href="mailto:thabata@thabatasantos.com" id="emailLink">
-                thabata@thabatasantos.com
-              </a>
-            </p>
+  <div class="socialIcons">
+    <a class="iconBtn" id="linkedinBtn" href="#" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+      <!-- LinkedIn Neon SVG -->
+      <svg class="iconSvg" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-ln" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22f0ff"/>
+            <stop offset="1" stop-color="#ff2bd6"/>
+          </linearGradient>
+          <filter id="glow-ln" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.6" result="b"/>
+            <feMerge>
+              <feMergeNode in="b"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
 
-            <div class="iconRow">
-              <button class="iconBtn" id="copyEmailBtn2" type="button" title="Copiar e-mail">
-                <span class="svg">✉</span>
-              </button>
-            </div>
-          </article>
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#g-ln)" stroke-width="2" filter="url(#glow-ln)"/>
+        <circle cx="22" cy="26" r="3.2" fill="url(#g-ln)"/>
+        <rect x="19.5" y="31" width="5" height="16" rx="2.2" fill="url(#g-ln)"/>
+        <path d="M30 31h4.8v2.2c1.1-1.7 2.9-2.8 5.6-2.8 4.6 0 7.6 2.9 7.6 8.9V47h-5.2V39c0-2.9-1-4.6-3.4-4.6-1.8 0-2.9 1.2-3.4 2.4-.2.5-.2 1.1-.2 1.8V47H30z"
+              fill="url(#g-ln)"/>
+      </svg>
+    </a>
 
-          <article class="card reveal">
-            <h3 class="cardTitle" data-i18n="contact_social_title">Social</h3>
-            <div class="iconRow">
-              <a class="iconBtn" id="linkedinBtn" href="#" target="_blank" rel="noreferrer" title="LinkedIn" aria-label="LinkedIn">
-                in
-              </a>
-              <a class="iconBtn" id="githubBtn" href="#" target="_blank" rel="noreferrer" title="GitHub" aria-label="GitHub">
-                ⌂
-              </a>
-              <a class="iconBtn" id="emailBtn" href="mailto:thabata@thabatasantos.com" title="E-mail" aria-label="E-mail">
-                ✉
-              </a>
-            </div>
+    <a class="iconBtn" id="githubBtn" href="#" target="_blank" rel="noreferrer" aria-label="GitHub">
+      <!-- GitHub Neon SVG -->
+      <svg class="iconSvg" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-gh" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22f0ff"/>
+            <stop offset="1" stop-color="#ff2bd6"/>
+          </linearGradient>
+          <filter id="glow-gh" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.8" result="b"/>
+            <feMerge>
+              <feMergeNode in="b"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
 
-            <div class="hint" data-i18n="contact_hint">
-              (Você vai colar seus links no app.js)
-            </div>
-          </article>
-        </div>
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#g-gh)" stroke-width="2" filter="url(#glow-gh)"/>
+        <!-- Simplified neon cat -->
+        <path d="M32 20c-6.6 0-12 5.3-12 11.9 0 5.2 3.4 9.6 8 11.2.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.3-3.9-1.3-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.7.9 2.3 1.3.3.2.8.2 1.2.1.1-.7.4-1.2.7-1.5-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.3-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.4 1.2.9-.3 2-.4 3-.4s2.1.1 3 .4c2.4-1.5 3.4-1.2 3.4-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 2 1.2 3.3 0 4.6-2.8 5.6-5.4 5.9.4.3.8 1 .8 2.1v3.1c0 .3.2.7.8.6 4.6-1.6 8-6 8-11.2C44 25.3 38.6 20 32 20z"
+              fill="url(#g-gh)" filter="url(#glow-gh)"/>
+      </svg>
+    </a>
+
+    <a class="iconBtn" id="emailBtn" href="#" aria-label="Email">
+      <!-- Email Neon SVG -->
+      <svg class="iconSvg" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="g-em" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#22f0ff"/>
+            <stop offset="1" stop-color="#ff2bd6"/>
+          </linearGradient>
+          <filter id="glow-em" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.6" result="b"/>
+            <feMerge>
+              <feMergeNode in="b"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#g-em)" stroke-width="2" filter="url(#glow-em)"/>
+        <path d="M18 24h28c1.7 0 3 1.3 3 3v18c0 1.7-1.3 3-3 3H18c-1.7 0-3-1.3-3-3V27c0-1.7 1.3-3 3-3z"
+              fill="rgba(255,255,255,0.03)" stroke="url(#g-em)" stroke-width="1.6" filter="url(#glow-em)"/>
+        <path d="M17 28l15 10 15-10" fill="none" stroke="url(#g-em)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow-em)"/>
+      </svg>
+    </a>
+  </div>
+</div>
 
         <footer class="footer">
           <span>© <span id="year"></span> Thabata Santos</span>
