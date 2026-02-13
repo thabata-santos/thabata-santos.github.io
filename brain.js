@@ -1,48 +1,56 @@
+// Brain 3D Neon – Cyberpunk Version 2.0
+
+const brainCanvas = document.getElementById("brainCanvas");
+if (!brainCanvas) return;
+
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / 400, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ alpha: true });
+const camera = new THREE.PerspectiveCamera(60, brainCanvas.clientWidth / brainCanvas.clientHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: brainCanvas, alpha: true });
 
-renderer.setSize(window.innerWidth, 400);
-document.getElementById("brain-container").appendChild(renderer.domElement);
+renderer.setSize(brainCanvas.clientWidth, brainCanvas.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio);
 
-const group = new THREE.Group();
-scene.add(group);
+camera.position.z = 6;
 
-const nodes = [];
-const geometry = new THREE.SphereGeometry(0.06, 16, 16);
-const material = new THREE.MeshBasicMaterial({ color: 0xff2bd6 });
-
-for (let i = 0; i < 60; i++) {
-  const node = new THREE.Mesh(geometry, material);
-  node.position.set(
-    (Math.random() - 0.5) * 3,
-    (Math.random() - 0.5) * 3,
-    (Math.random() - 0.5) * 3
-  );
-  nodes.push(node);
-  group.add(node);
-}
-
-const lineMaterial = new THREE.LineBasicMaterial({ color: 0x22f0ff });
-
-nodes.forEach((a, i) => {
-  nodes.forEach((b, j) => {
-    if (i < j && a.position.distanceTo(b.position) < 1.2) {
-      const points = [a.position, b.position];
-      const geometry = new THREE.BufferGeometry().setFromPoints(points);
-      const line = new THREE.Line(geometry, lineMaterial);
-      group.add(line);
-    }
-  });
+// Geometry
+const geometry = new THREE.IcosahedronGeometry(2.2, 3);
+const material = new THREE.MeshStandardMaterial({
+  color: 0xff2bd6,
+  emissive: 0x7b00ff,
+  emissiveIntensity: 1.2,
+  transparent: true,
+  opacity: 0.85,
+  wireframe: true
 });
 
-camera.position.z = 4;
+const brain = new THREE.Mesh(geometry, material);
+scene.add(brain);
 
+// Neon glow light
+const light1 = new THREE.PointLight(0x22f0ff, 2);
+light1.position.set(5, 5, 5);
+scene.add(light1);
+
+const light2 = new THREE.PointLight(0xff2bd6, 2);
+light2.position.set(-5, -5, 5);
+scene.add(light2);
+
+// Animation
 function animate() {
   requestAnimationFrame(animate);
-  group.rotation.x += 0.003;
-  group.rotation.y += 0.004;
+
+  brain.rotation.y += 0.004;
+  brain.rotation.x += 0.002;
+
   renderer.render(scene, camera);
 }
 
 animate();
+
+window.addEventListener("resize", () => {
+  const width = brainCanvas.clientWidth;
+  const height = brainCanvas.clientHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
