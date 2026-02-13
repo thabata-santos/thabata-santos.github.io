@@ -32,7 +32,7 @@ const I18N = {
     sec_about: "Sobre",
     about_who_title: "Quem sou",
     about_who_body:
-      "Sou estudante de Engenharia da Computação em transição para Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
+      "Estudante de Engenharia da Computação com foco em Cloud/Infra. Gosto de aprender na prática com labs e projetos replicáveis.",
     about_stack_title: "Stack & interesses",
     about_stack_1: "AWS (EC2, VPC, S3, RDS, Lambda, Route 53)",
     about_stack_2: "Linux, redes, troubleshooting",
@@ -402,14 +402,14 @@ function setupNeural() {
         if (dist < maxDist * dpr) {
           const t = 1 - dist / (maxDist * dpr);
           // cyan ↔ pink alternation
-          ctx.strokeStyle = `rgba(34,240,255,${0.10 * t})`;
+          ctx.strokeStyle = `rgba(34,240,255,${0.14 * t})`;
           ctx.lineWidth = 1 * dpr;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
           ctx.stroke();
 
-          ctx.strokeStyle = `rgba(255,43,214,${0.06 * t})`;
+          ctx.strokeStyle = `rgba(255,43,214,${0.04 * t})`;
           ctx.beginPath();
           ctx.moveTo(a.x+1*dpr, a.y+1*dpr);
           ctx.lineTo(b.x+1*dpr, b.y+1*dpr);
