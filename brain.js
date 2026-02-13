@@ -1,56 +1,86 @@
-// Brain 3D Neon – Cyberpunk Version 2.0
+// Brain 3D Elite Version
+let scene, camera, renderer, brainMesh, particles;
 
-const brainCanvas = document.getElementById("brainCanvas");
-if (!brainCanvas) return;
+function initBrain() {
+  const container = document.getElementById("brainContainer");
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(60, brainCanvas.clientWidth / brainCanvas.clientHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({ canvas: brainCanvas, alpha: true });
+  scene = new THREE.Scene();
 
-renderer.setSize(brainCanvas.clientWidth, brainCanvas.clientHeight);
-renderer.setPixelRatio(window.devicePixelRatio);
+  camera = new THREE.PerspectiveCamera(
+    60,
+    container.clientWidth / container.clientHeight,
+    0.1,
+    1000
+  );
+  camera.position.z = 4;
 
-camera.position.z = 6;
+  renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  container.appendChild(renderer.domElement);
 
-// Geometry
-const geometry = new THREE.IcosahedronGeometry(2.2, 3);
-const material = new THREE.MeshStandardMaterial({
-  color: 0xff2bd6,
-  emissive: 0x7b00ff,
-  emissiveIntensity: 1.2,
-  transparent: true,
-  opacity: 0.85,
-  wireframe: true
-});
+  const geometry = new THREE.IcosahedronGeometry(1.4, 3);
 
-const brain = new THREE.Mesh(geometry, material);
-scene.add(brain);
+  const material = new THREE.MeshPhysicalMaterial({
+    color: 0xff2bd6,
+    emissive: 0xff2bd6,
+    emissiveIntensity: 0.6,
+    metalness: 0.3,
+    roughness: 0.15,
+    transparent: true,
+    opacity: 0.75,
+    transmission: 0.9,
+    thickness: 1.5
+  });
 
-// Neon glow light
-const light1 = new THREE.PointLight(0x22f0ff, 2);
-light1.position.set(5, 5, 5);
-scene.add(light1);
+  brainMesh = new THREE.Mesh(geometry, material);
+  scene.add(brainMesh);
 
-const light2 = new THREE.PointLight(0xff2bd6, 2);
-light2.position.set(-5, -5, 5);
-scene.add(light2);
+  // Particles
+  const particleGeo = new THREE.BufferGeometry();
+  const particleCount = 300;
+  const positions = [];
 
-// Animation
+  for (let i = 0; i < particleCount; i++) {
+    positions.push((Math.random() - 0.5) * 6);
+    positions.push((Math.random() - 0.5) * 6);
+    positions.push((Math.random() - 0.5) * 6);
+  }
+
+  particleGeo.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(positions, 3)
+  );
+
+  const particleMat = new THREE.PointsMaterial({
+    color: 0x22f0ff,
+    size: 0.02
+  });
+
+  particles = new THREE.Points(particleGeo, particleMat);
+  scene.add(particles);
+
+  animate();
+}
+
 function animate() {
   requestAnimationFrame(animate);
 
-  brain.rotation.y += 0.004;
-  brain.rotation.x += 0.002;
+  brainMesh.rotation.y += 0.003;
+  brainMesh.rotation.x += 0.001;
+
+  particles.rotation.y += 0.001;
 
   renderer.render(scene, camera);
 }
 
-animate();
-
 window.addEventListener("resize", () => {
-  const width = brainCanvas.clientWidth;
-  const height = brainCanvas.clientHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
+  const container = document.getElementById("brainContainer");
+  if (!container) return;
+
+  camera.aspect = container.clientWidth / container.clientHeight;
   camera.updateProjectionMatrix();
+  renderer.setSize(container.clientWidth, container.clientHeight);
 });
+
+window.addEventListener("DOMContentLoaded", initBrain);
