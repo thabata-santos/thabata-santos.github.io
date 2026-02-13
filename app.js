@@ -495,4 +495,25 @@ function setupFooter() {
   setupLangToggle();
   setupFooter();
 })();
+function setupCursorReactive() {
+  const cursor = document.getElementById("cursorGlow");
+
+  document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  document.querySelectorAll("a, button, .glassCard").forEach(el => {
+    el.addEventListener("mouseenter", () => {
+      cursor.style.background = "var(--neon-blue)";
+      cursor.style.transform = "scale(1.8)";
+    });
+    el.addEventListener("mouseleave", () => {
+      cursor.style.background = "var(--neon-pink)";
+      cursor.style.transform = "scale(1)";
+    });
+  });
+}
+
+setupCursorReactive();
 
