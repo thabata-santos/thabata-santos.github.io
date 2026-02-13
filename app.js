@@ -2,7 +2,7 @@
    CONFIG — COLE SEUS LINKS AQUI
 ========================= */
 const PROFILE_LINKS = {
-  linkedin: "www.linkedin.com/in/thabata-santos",
+  linkedin: "https://www.linkedin.com/in/thabata-santos",
   github: "https://github.com/thabata-santos",
   email: "thabata@thabatasantos.com"
 };
@@ -312,26 +312,45 @@ function renderSkillsAndCerts() {
   next.innerHTML = (DATA.certs?.next || []).map((c) => `<li>${c[LANG] || c.pt}</li>`).join("");
 }
 
-/* =========================
-   CURSOR ANIMATION
-========================= */
-function setupCursor() {
-  const c = $("#cursorGlow");
-  let x = -9999, y = -9999;
-  let tx = x, ty = y;
+/* ================= PREMIUM CURSOR ================= */
 
-  window.addEventListener("mousemove", (e) => {
-    tx = e.clientX; ty = e.clientY;
+const cursor = document.querySelector('.cursor');
+
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor() {
+  currentX += (mouseX - currentX) * 0.12;
+  currentY += (mouseY - currentY) * 0.12;
+
+  cursor.style.left = currentX + 'px';
+  cursor.style.top = currentY + 'px';
+
+  requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+/* HOVER EFFECT */
+
+const interactiveElements = document.querySelectorAll('a, button, .card, .project-card');
+
+interactiveElements.forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursor.classList.add('cursor-hover');
   });
 
-  function tick() {
-    x += (tx - x) * 0.18;
-    y += (ty - y) * 0.18;
-    c.style.transform = `translate(${x - 9}px, ${y - 9}px)`;
-    requestAnimationFrame(tick);
-  }
-  tick();
-}
+  el.addEventListener('mouseleave', () => {
+    cursor.classList.remove('cursor-hover');
+  });
+});
 
 /* =========================
    NEURAL NETWORK BACKGROUND (Canvas)
