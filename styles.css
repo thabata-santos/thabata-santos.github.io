@@ -75,3 +75,59 @@ section h2 {
   mix-blend-mode: screen;
   filter: blur(8px);
 }
+/* =========================
+   ELITE SOCIAL ICONS (NEON)
+========================= */
+.socialWrap { text-align: center; }
+.socialTitle {
+  margin: 0 0 14px;
+  font-family: "Orbitron", system-ui, sans-serif;
+  letter-spacing: .06em;
+  opacity: .95;
+}
+
+.socialIcons{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+.iconBtn{
+  width:54px;
+  height:54px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  text-decoration:none;
+  position:relative;
+  transform: translateZ(0);
+}
+
+.iconSvg{
+  width:54px;
+  height:54px;
+  transition: transform .25s ease, filter .25s ease;
+  animation: iconIdle 3.8s ease-in-out infinite;
+}
+
+@keyframes iconIdle{
+  0%,100% { transform: translateY(0) }
+  50% { transform: translateY(-2px) }
+}
+
+.iconBtn:hover .iconSvg{
+  transform: translateY(-4px) scale(1.04);
+  filter: drop-shadow(0 0 12px rgba(34,240,255,.35)) drop-shadow(0 0 18px rgba(255,43,214,.25));
+}
+
+.iconBtn:focus-visible{
+  outline: 2px solid rgba(34,240,255,.7);
+  outline-offset: 4px;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .iconBtn, .iconSvg { width: 50px; height: 50px; }
+  .socialIcons { gap: 12px; }
+}
