@@ -6,7 +6,7 @@ body{
   overflow-x:hidden;
 }
 
-canvas#neural-bg{
+canvas#neural{
   position:fixed;
   top:0;
   left:0;
@@ -15,119 +15,49 @@ canvas#neural-bg{
   z-index:-1;
 }
 
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 40px;
-}
-
-nav a{
-  margin-left:20px;
-  color:#00c8ff;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-nav a:hover{
-  color:#ff4fd8;
-}
-
-.hero{
-  text-align:center;
-  padding:120px 20px;
-}
-
-.hero h1{
-  font-family:'Orbitron',sans-serif;
-  font-size:48px;
-  color:#00c8ff;
-}
-
-.hero p{
-  font-size:18px;
-  opacity:0.8;
-}
-
 .section{
-  padding:100px 20px;
-  text-align:center;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all .8s ease;
 }
 
-.section h2{
-  font-family:'Orbitron';
-  color:#00c8ff;
-  margin-bottom:50px;
-}
-
-.cards{
-  display:flex;
-  gap:40px;
-  justify-content:center;
-  flex-wrap:wrap;
+.section.show{
+  opacity:1;
+  transform:translateY(0);
 }
 
 .card{
   background:rgba(255,255,255,0.05);
-  padding:30px;
-  border-radius:15px;
-  width:300px;
-  transition:0.4s;
-  backdrop-filter:blur(10px);
+  border:1px solid rgba(34,240,255,.15);
+  backdrop-filter:blur(18px);
+  border-radius:16px;
+  transition:.4s;
 }
 
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 25px #00c8ff;
-}
-
-.projects-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
-}
-
-.project-card{
-  background:rgba(255,255,255,0.05);
-  padding:30px;
-  border-radius:15px;
-  transition:0.4s;
-}
-
-.project-card:hover{
-  box-shadow:0 0 25px #ff4fd8;
-}
-
-.social-icons{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  font-size:32px;
-}
-
-.social-icons a{
-  color:#00c8ff;
-  transition:0.3s;
-}
-
-.social-icons a:hover{
-  color:#ff4fd8;
-  transform:scale(1.2);
-  text-shadow:0 0 20px #ff4fd8;
+  box-shadow:
+    0 0 20px rgba(34,240,255,.5),
+    0 0 40px rgba(255,43,214,.2);
 }
 
 .cursor{
-  width:15px;
-  height:15px;
-  border:2px solid #ff4fd8;
+  width:14px;
+  height:14px;
+  border:2px solid #22f0ff;
   border-radius:50%;
   position:fixed;
   pointer-events:none;
-  transform:translate(-50%,-50%);
-  transition:0.1s;
+  z-index:9999;
+  transition:.2s;
 }
 
-/* RESPONSIVO */
+.cursor-hover{
+  width:28px;
+  height:28px;
+  border-color:#ff2bd6;
+  box-shadow:0 0 15px #ff2bd6;
+}
+
 @media(max-width:768px){
-  .hero h1{font-size:32px;}
-  .cards{flex-direction:column;align-items:center;}
+  .cursor{display:none;}
 }
